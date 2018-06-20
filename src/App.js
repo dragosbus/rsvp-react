@@ -15,6 +15,19 @@ class App extends Component {
       hide: false
     };
     this.hideUnconfirmed = this.hideUnconfirmed.bind(this);
+    this.addPerson = this.addPerson.bind(this);
+  }
+
+  addPerson(name) {
+    let newPerson = {
+      name: name,
+      isConfirmed: false
+    };
+    this.setState(prevState=>{
+      return {
+        persons:prevState.persons.concat(newPerson)
+      }
+    },()=>console.log(this.state.persons));
   }
 
   hideUnconfirmed(e) {
@@ -26,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header/>
+        <Header addPerson={this.addPerson}/>
         <div className="main">
           <Hide hideUnconfirmed={this.hideUnconfirmed}/>
           <Counter persons={this.state.persons}/>
