@@ -11,16 +11,24 @@ class App extends Component {
     this.state = {
       persons: [
         {"name":"dragos", isConfirmed: false}
-      ]
+      ],
+      hide: false
     };
+    this.hideUnconfirmed = this.hideUnconfirmed.bind(this);
+  }
+
+  hideUnconfirmed(e) {
+    this.setState({
+      hide: !this.state.hide
+    });
   }
 
   render() {
     return (
       <div className="App">
         <Header/>
-        <div class="main">
-          <Hide/>
+        <div className="main">
+          <Hide hideUnconfirmed={this.hideUnconfirmed}/>
           <Counter persons={this.state.persons}/>
           <Persons persons={this.state.persons}/>
         </div>
