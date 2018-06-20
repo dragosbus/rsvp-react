@@ -57,7 +57,7 @@ class App extends Component {
         <div className="main">
           <Hide hideUnconfirmed={this.hideUnconfirmed}/>
           <Counter persons={this.state.persons}/>
-          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend}/>
+          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend} hide={this.state.hide}/>
         </div>
       </div>
     );
