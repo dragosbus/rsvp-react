@@ -16,6 +16,7 @@ class App extends Component {
     };
     this.hideUnconfirmed = this.hideUnconfirmed.bind(this);
     this.addPerson = this.addPerson.bind(this);
+    this.confirmAttend = this.confirmAttend.bind(this);
   }
 
   addPerson(name) {
@@ -36,6 +37,19 @@ class App extends Component {
     });
   }
 
+  confirmAttend(index) {
+    let persons = this.state.persons;
+    persons.forEach((person, i)=>{
+      if(i===index) {
+        person.isConfirmed = !person.isConfirmed;
+      }
+    });
+
+    this.setState({
+      persons: persons
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -43,7 +57,7 @@ class App extends Component {
         <div className="main">
           <Hide hideUnconfirmed={this.hideUnconfirmed}/>
           <Counter persons={this.state.persons}/>
-          <Persons persons={this.state.persons}/>
+          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend}/>
         </div>
       </div>
     );

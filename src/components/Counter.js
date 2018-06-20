@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 export const Counter = props =>{
@@ -8,7 +8,7 @@ export const Counter = props =>{
     let total = props.persons.length;
 
     return(
-        <table class="counter">
+        <table className="counter">
           <tbody>
             <tr>
               <td>Attending:</td>

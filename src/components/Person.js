@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 export const Person = props =>{
     return(
         <li className={props.isConfirmed? "responded" : ''}><span>{props.name}</span>
           <label>
-            <input type="checkbox"/> Confirmed
+            <input type="checkbox" onChange={props.confirmAttend}/> Confirmed
             </label>
             <button>edit</button>
             <button>remove</button>
