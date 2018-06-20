@@ -10,19 +10,22 @@ class App extends Component {
     super(props);
     this.state = {
       persons: [
-        {"name":"dragos", isConfirmed: false}
+        {"name":"dragos", isConfirmed: false, toggleEdit: false}
       ],
       hide: false
     };
     this.hideUnconfirmed = this.hideUnconfirmed.bind(this);
     this.addPerson = this.addPerson.bind(this);
     this.confirmAttend = this.confirmAttend.bind(this);
+    this.editPerson = this.editPerson.bind(this);
+    this.savePerson = this.savePerson.bind(this);
   }
 
   addPerson(name) {
     let newPerson = {
       name: name,
-      isConfirmed: false
+      isConfirmed: false,
+      toggleEdit: false
     };
     this.setState(prevState=>{
       return {
@@ -50,6 +53,33 @@ class App extends Component {
     });
   }
 
+  editPerson(e, index) {
+    let persons = this.state.persons;
+    persons.forEach((person, i)=>{
+      if(i===index) {
+        person.toggleEdit = !person.toggleEdit;
+      }
+    });
+
+    this.setState({
+      persons: persons
+    });
+  }
+
+  savePerson(newName, index) {
+    let persons = this.state.persons;
+    persons.forEach((person, i)=>{
+      if(i===index) {
+        person.toggleEdit = !person.toggleEdit;
+        person.name = newName
+      }
+    });
+
+    this.setState({
+      persons: persons
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -57,7 +87,7 @@ class App extends Component {
         <div className="main">
           <Hide hideUnconfirmed={this.hideUnconfirmed}/>
           <Counter persons={this.state.persons}/>
-          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend} hide={this.state.hide}/>
+          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend} hide={this.state.hide} editPerson={this.editPerson} toggleEdit={this.state.toggleEdit} savePerson={this.savePerson}/>
         </div>
       </div>
     );
