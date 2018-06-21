@@ -10,7 +10,7 @@ export const Person = props =>{
           <input type="checkbox" onChange={props.confirmAttend}/> Confirmed
         </label>
         <button onClick={()=>props.savePerson(newName.value, props.index)}>Save</button>
-        <button>remove</button>
+        <button removePerson={props.removePerson}>remove</button>
       </li>
   } else {
     template = <li className={props.isConfirmed? "responded" : ''} style={{display: props.hide ? props.isConfirmed ? 'block' : 'none' : 'block'}}><span>{props.name}</span>
@@ -18,7 +18,7 @@ export const Person = props =>{
         <input type="checkbox" onChange={props.confirmAttend}/> Confirmed
       </label>
       <button onClick={props.editPerson}>edit</button>
-      <button>remove</button>
+      <button onClick={props.removePerson}>remove</button>
     </li>
   }
 

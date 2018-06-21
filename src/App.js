@@ -19,6 +19,7 @@ class App extends Component {
     this.confirmAttend = this.confirmAttend.bind(this);
     this.editPerson = this.editPerson.bind(this);
     this.savePerson = this.savePerson.bind(this);
+    this.removePerson = this.removePerson.bind(this);
   }
 
   addPerson(name) {
@@ -80,6 +81,12 @@ class App extends Component {
     });
   }
 
+  removePerson(index) {
+    this.setState({
+      persons: this.state.persons.filter(p=> p !== this.state.persons[index])
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -87,7 +94,7 @@ class App extends Component {
         <div className="main">
           <Hide hideUnconfirmed={this.hideUnconfirmed}/>
           <Counter persons={this.state.persons}/>
-          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend} hide={this.state.hide} editPerson={this.editPerson} toggleEdit={this.state.toggleEdit} savePerson={this.savePerson}/>
+          <Persons persons={this.state.persons} confirmAttend={this.confirmAttend} hide={this.state.hide} editPerson={this.editPerson} toggleEdit={this.state.toggleEdit} savePerson={this.savePerson} removePerson={this.removePerson}/>
         </div>
       </div>
     );
